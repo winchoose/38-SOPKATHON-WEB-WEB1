@@ -1,5 +1,20 @@
+import { useState } from 'react';
+import { Input } from './shared/components/Input';
+
 function App() {
-  return <h1>아아 마이크 테스트</h1>;
+  const [receiver, setReceiver] = useState('asdsad');
+  const [sender, setSender] = useState('asdasddsa');
+
+  return (
+    <div>
+      <Input
+        receiver={receiver}
+        sender={sender}
+        onReceiverChange={(event) => setReceiver(event.target.value)}
+        onSenderChange={(event) => setSender(event.target.value)}
+      />
+    </div>
+  );
 }
 
 export default App;
