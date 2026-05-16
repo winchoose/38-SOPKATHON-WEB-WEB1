@@ -7,7 +7,8 @@ export const ENDPOINTS = {
   ARCHIVES: {
     CREATE: '/api/v1/archives',
     GET_ALL: '/api/v1/archives',
-    GET: (savedMessageId: number) => `/api/v1/archives/${savedMessageId}`,
-    DELETE: (savedMessageId: number) => `/api/v1/archives/${savedMessageId}`,
+    GET_ONE: (savedMessageId: number) => `/api/v1/archives/${savedMessageId}`,
+    DELETE: (savedMessageId: number) =>
+      `/api/v1/archives/${savedMessageId}/delete`,
   },
 } as const;
