@@ -1,13 +1,15 @@
 import { http } from '../../../shared/apis/http';
 import { ENDPOINTS } from '../../../shared/apis/endpoints';
 import type {
-  GetArchivesResponse,
+  ArchiveItem,
   GetSavedMessageResponse,
   DeleteSavedMessageRequest,
 } from './../../../shared/types/types';
 
-export const getArchives = () =>
-  http.get<GetArchivesResponse>(ENDPOINTS.ARCHIVES.GET_ALL);
+export const getArchives = async (): Promise<ArchiveItem[]> => {
+  const res = await http.get<ArchiveItem[]>(ENDPOINTS.ARCHIVES.GET_ALL);
+  return res ?? [];
+};
 
 export const getSavedMessage = (savedMessageId: number) =>
   http.post<GetSavedMessageResponse>(

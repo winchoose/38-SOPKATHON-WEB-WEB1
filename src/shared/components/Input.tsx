@@ -24,10 +24,9 @@ export const Input = ({
       <label className="flex items-center gap-[10px]">
         <img src={userIconOrange} alt="" />
         <input
-          value={receiver}
-          onChange={onReceiverChange}
-          placeholder="수신자"
-          maxLength={maxLength}
+          value={sender}
+          onChange={onSenderChange}
+          placeholder="발신자"
           className="w-[3.7rem] text-center text-[14px]"
         />
       </label>
@@ -35,10 +34,9 @@ export const Input = ({
       <label className="flex items-center gap-[10px]">
         <img src={userIconBlue} alt="" />
         <input
-          value={sender}
-          onChange={onSenderChange}
-          placeholder="발신자"
-          maxLength={maxLength}
+          value={receiver}
+          onChange={onReceiverChange}
+          placeholder="수신자"
           className="w-[3.7rem] text-center text-[14px]"
         />
       </label>
