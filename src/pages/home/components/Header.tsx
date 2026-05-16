@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import ArrowBack from '../../../shared/assets/ArrowBack.svg';
 
 interface HeaderProps {
