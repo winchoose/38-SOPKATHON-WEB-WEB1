@@ -1,5 +1,5 @@
 function App() {
-  return <h1>솝커톤 화이팅</h1>;
+  return <h1>아아 마이크 테스트</h1>;
 }
 
 export default App;
