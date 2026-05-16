@@ -1,9 +1,22 @@
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../shared/components/Button';
 import MessageGraphic from '../../shared/assets/svg/messageget_graphic.svg';
+import { http } from '../../shared/apis/http';
+import { ENDPOINTS } from '../../shared/apis/endpoints';
+import type { GetMessageResponse } from '../../shared/types/types';
 
 export default function LetterConfirmPage() {
   const navigate = useNavigate();
+  const handleConfirm = async () => {
+    try {
+      const data = await http.get<GetMessageResponse>(
+        ENDPOINTS.MESSAGES.GET(1),
+      );
+      navigate(`/letters/2`, { state: data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="flex h-screen flex-col items-center px-6 py-10">
@@ -26,7 +39,7 @@ export default function LetterConfirmPage() {
         />
       </div>
 
-      <Button label="확인하기" onClick={() => navigate('/letters/1')} />
+      <Button label="확인하기" onClick={handleConfirm} />
     </div>
   );
 }
