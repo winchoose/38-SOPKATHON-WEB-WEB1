@@ -8,11 +8,13 @@ import type { GetMessageResponse } from '../../shared/types/types';
 export default function LetterConfirmPage() {
   const navigate = useNavigate();
   const handleConfirm = async () => {
+    console.log(import.meta.env.VITE_API_BASE_URL);
+    console.log(ENDPOINTS.MESSAGES.GET(1));
     try {
       const data = await http.get<GetMessageResponse>(
         ENDPOINTS.MESSAGES.GET(1),
       );
-      navigate(`/letters/2`, { state: data });
+      navigate(`/letters/1`, { state: { ...data, messageId: 1 } });
     } catch (error) {
       console.error(error);
     }
