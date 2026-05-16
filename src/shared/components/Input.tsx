@@ -18,7 +18,7 @@ export const Input = ({
   onReceiverChange,
 }: InputProps) => {
   return (
-    <div className="border-background-gray flex h-[48px] flex-1 items-center justify-center border-b px-[50px]">
+    <div className="border-background-gray flex flex-1 items-center justify-center border-b px-[50px] py-[13.5px]">
       <label className="flex items-center gap-[10px]">
         <img src={userIconOrange} alt="" />
         <input
