@@ -30,11 +30,16 @@ export default function MessagePage() {
 
   const handleSave = async () => {
     try {
-      const response = await http.post(ENDPOINTS.ARCHIVES.CREATE, {
-        messageId: data?.messageId,
-        password: '1234',
-      });
+      const response = await http.post<{ savedMessageId: number }>(
+        ENDPOINTS.ARCHIVES.CREATE,
+        {
+          messageId: data?.messageId,
+          password: '1234',
+        },
+      );
       console.log('저장 성공:', response);
+      navigate(`/archives/`);
+      console.log(response);
     } catch (error) {
       console.error('저장 실패:', error);
     }
