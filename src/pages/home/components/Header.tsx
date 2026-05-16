@@ -10,7 +10,7 @@ export default function Header({ title, showBack = true }: HeaderProps) {
   const navigate = useNavigate();
 
   return (
-    <div className="relative flex w-full h-[46px] items-center justify-center px-4">
+    <div className="relative flex h-[46px] w-full items-center justify-center px-4">
       {showBack && (
         <button
           onClick={() => navigate(-1)}
@@ -20,7 +20,7 @@ export default function Header({ title, showBack = true }: HeaderProps) {
         </button>
       )}
       {title && (
-        <span className="text-black font-[Inter] text-[17px] font-semibold leading-[25.5px] tracking-[-0.732px]">
+        <span className="font-[Inter] text-[17px] leading-[25.5px] font-semibold tracking-[-0.732px] text-black">
           {title}
         </span>
       )}
