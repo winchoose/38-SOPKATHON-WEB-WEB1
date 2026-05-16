@@ -12,16 +12,13 @@ const OnboardingPage = () => {
     <section className="min-h-dvh bg-white px-[3rem] pt-[7.4rem] text-[#2B343B]">
       <img src={logoMosimosi} alt="MOSiMOSi" className="h-auto w-[12.7rem]" />
 
-      <h1 className="mt-[6.2rem] text-[2.2rem] leading-[140%] font-semibold">
-        마음을 담아 모스 부호로
-        <br />
-        메시지를 전달해봐요!
+      <h1 className="mt-[6.2rem] max-w-[30rem] break-keep text-[2.2rem] leading-[140%] font-semibold">
+        마음을 담아 모스 부호로 메시지를 전달해봐요!
       </h1>
 
-      <p className="text-sub-gray mt-[2rem] text-[1.4rem] leading-[160%] font-medium">
-        직접 전하기엔 부끄럽고 망설여지는 감정을 모스부호로
-        <br />
-        전달합니다. 점과 선은 마음이 천천히 닿는 방식이 됩니다.
+      <p className="text-sub-gray mt-[2rem] max-w-[33.5rem] break-keep text-[1.4rem] leading-[160%] font-medium">
+        직접 전하기엔 부끄럽고 망설여지는 감정을 모스부호로 전달합니다. 점과
+        선은 마음이 천천히 닿는 방식이 됩니다.
       </p>
 
       <div className="mt-[7.2rem] flex justify-center gap-[2rem]">
