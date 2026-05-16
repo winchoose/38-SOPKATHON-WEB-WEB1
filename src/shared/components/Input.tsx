@@ -27,6 +27,7 @@ export const Input = ({
           value={sender}
           onChange={onSenderChange}
           placeholder="발신자"
+          maxLength={maxLength}
           className="w-[3.7rem] text-center text-[14px]"
         />
       </label>
@@ -37,6 +38,7 @@ export const Input = ({
           value={receiver}
           onChange={onReceiverChange}
           placeholder="수신자"
+          maxLength={maxLength}
           className="w-[3.7rem] text-center text-[14px]"
         />
       </label>
