@@ -14,6 +14,7 @@ export const getArchives = async (): Promise<ArchiveItem[]> => {
 export const getSavedMessage = (savedMessageId: number) =>
   http.post<GetSavedMessageResponse>(
     ENDPOINTS.ARCHIVES.GET_ONE(savedMessageId),
+    { password: '1234' },
   );
 
 export const deleteSavedMessage = (

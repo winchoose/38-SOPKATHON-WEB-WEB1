@@ -7,8 +7,10 @@ import { Chip } from './components/chip';
 import { getArchives } from './apis/archive';
 import type { ArchiveItem } from '../../shared/types/types';
 import { convertHangulToMorse } from '../../shared/utils/morse';
+import { useNavigate } from 'react-router-dom';
 
 const ArchivePage = () => {
+  const navigate = useNavigate();
   const [sender, setSender] = useState('');
   const [receiver, setReceiver] = useState('');
   const [archives, setArchives] = useState<ArchiveItem[]>([]);
@@ -69,14 +71,19 @@ const ArchivePage = () => {
         </div>
         <div className="grid grid-cols-2 gap-3">
           {filteredArchives.map((item, index) => (
-            <MosCard
+            <div
               key={item.savedMessageId}
-              content={convertHangulToMorse(item.content)}
-              sender={item.senderInitial}
-              receiver={item.receiverInitial}
-              date={item.createdAt}
-              contentClassName={`font-black tracking-widest ${archiveColors[index]}`}
-            />
+              className="cursor-pointer"
+              onClick={() => navigate(`/archives/${item.savedMessageId}`)}
+            >
+              <MosCard
+                content={convertHangulToMorse(item.content)}
+                sender={item.senderInitial}
+                receiver={item.receiverInitial}
+                date={item.createdAt}
+                contentClassName={`font-black tracking-widest ${archiveColors[index]}`}
+              />
+            </div>
           ))}
         </div>
       </Layout>
