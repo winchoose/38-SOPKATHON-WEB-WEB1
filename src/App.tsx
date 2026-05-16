@@ -1,5 +1,11 @@
+import Layout from './layout/Layout';
+
 function App() {
-  return <h1>아아 마이크 테스트</h1>;
+  return (
+    <Layout>
+      <></>
+    </Layout>
+  );
 }
 
 export default App;
