@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../../shared/components/Button';
 import MessageOpenGraphic from '../../shared/assets/svg/messageopen_graphic.svg';
 import TranslateButton from '../../shared/assets/svg/translate_button.svg';

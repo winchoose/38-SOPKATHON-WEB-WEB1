@@ -7,6 +7,7 @@ export const http = {
     config?: AxiosRequestConfig,
   ): Promise<TData> => {
     const response = await apiInstance.get<{ data: TData }>(url, config);
+    console.log('response.data', response.data);
     return response.data.data;
   },
 

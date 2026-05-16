@@ -4,6 +4,7 @@ type MosCardProps = {
   receiver: string;
   date: string;
   className?: string;
+  contentClassName?: string;
 };
 
 export const MosCard = ({
@@ -11,17 +12,20 @@ export const MosCard = ({
   sender,
   receiver,
   className,
+  contentClassName,
 }: MosCardProps) => {
   return (
     <article
-      className={`border-sub-gray-2 flex flex-1 flex-col gap-[5px] rounded-[5px] border px-[13px] py-[6px] ${className ?? ''}`}
+      className={`${className ?? ''} border-sub-gray-2 flex flex-1 flex-col gap-[5px] rounded-[5px] border px-[13px] py-[6px]`}
     >
-      <span className="text-[14px]">from.{sender}</span>
-      <div className="mb-[20px] line-clamp-3 w-full text-[15px] text-black">
+      <span className="text-[14px]">FROM.{sender} 님</span>
+      <div
+        className={`${contentClassName ?? ''} mb-[20px] line-clamp-3 w-full text-[15px] text-black`}
+      >
         {content}
       </div>
       <span className="text-sub-gray-2 text-end text-[14px]">
-        TO.{receiver}
+        TO.{receiver} 님
       </span>
     </article>
   );
