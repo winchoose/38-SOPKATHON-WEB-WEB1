@@ -1,0 +1,17 @@
+@theme {
+  --color-*: initial;
+
+  --color-text-primary: #1a1b1b;
+  --color-text-secondary: #626871;
+  --color-sub-gray: #93969d;
+  --color-sub-gray-2: #b9bbbf;
+  --color-background-gray: #ededed;
+  --color-background-gray-2: #f4f6f7;
+
+  --color-primary-orange: #ff942a;
+  --color-primary-red: #f84f38;
+  --color-primary-blue: #4ea1ff;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
