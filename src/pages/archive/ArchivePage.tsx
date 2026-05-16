@@ -9,34 +9,14 @@ import type { ArchiveItem } from '../../shared/types/types';
 import { convertHangulToMorse } from '../../shared/utils/morse';
 import { useNavigate } from 'react-router-dom';
 
+const COLORS = ['text-primary-orange', 'text-primary-red', 'text-primary-blue'];
+
 const ArchivePage = () => {
   const navigate = useNavigate();
   const [sender, setSender] = useState('');
   const [receiver, setReceiver] = useState('');
   const [archives, setArchives] = useState<ArchiveItem[]>([]);
   const [selected, setSelected] = useState('전체');
-
-  useEffect(() => {
-    getArchives().then((res) => {
-      console.log(res);
-      setArchives(res ?? []);
-    });
-  }, []);
-
-  const filteredArchives =
-    sender && receiver
-      ? archives.filter(
-          (item) =>
-            item.senderInitial === sender && item.receiverInitial === receiver,
-        )
-      : archives;
-
-  const COLORS = [
-    'text-primary-orange',
-    'text-primary-red',
-    'text-primary-blue',
-  ];
-
   const [archiveColors, setArchiveColors] = useState<string[]>([]);
 
   useEffect(() => {
@@ -48,6 +28,14 @@ const ArchivePage = () => {
       );
     });
   }, []);
+
+  const filteredArchives =
+    sender && receiver
+      ? archives.filter(
+          (item) =>
+            item.senderInitial === sender && item.receiverInitial === receiver,
+        )
+      : archives;
 
   return (
     <div>
@@ -74,7 +62,11 @@ const ArchivePage = () => {
             <div
               key={item.savedMessageId}
               className="cursor-pointer"
-              onClick={() => navigate(`/archives/${item.savedMessageId}`)}
+              onClick={() =>
+                navigate(`/archives/${item.savedMessageId}`, {
+                  state: { message: item },
+                })
+              }
             >
               <MosCard
                 content={convertHangulToMorse(item.content)}

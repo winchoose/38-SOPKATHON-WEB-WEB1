@@ -1,24 +1,19 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Button } from '../../shared/components/Button';
 import MessageOpenGraphic from '../../shared/assets/svg/messageopen_graphic.svg';
 import TranslateButton from '../../shared/assets/svg/translate_button.svg';
 import { convertHangulToMorse } from '../../shared/utils/morse';
 import Header from '../home/components/Header';
-import { getSavedMessage, deleteSavedMessage } from '../archive/apis/archive';
+import { deleteSavedMessage } from '../archive/apis/archive';
 import type { GetSavedMessageResponse } from '../../shared/types/types';
 
 export default function ArchiveDetailPage() {
   const { savedMessageId } = useParams();
+  const { state } = useLocation();
   const navigate = useNavigate();
-  const [message, setMessage] = useState<GetSavedMessageResponse | null>(null);
+  const message: GetSavedMessageResponse | null = state?.message ?? null;
   const [isTranslated, setIsTranslated] = useState(false);
-
-  useEffect(() => {
-    if (savedMessageId) {
-      getSavedMessage(Number(savedMessageId)).then(setMessage);
-    }
-  }, [savedMessageId]);
 
   const initialContent = message?.content ?? '';
   const morseContent = convertHangulToMorse(initialContent);
@@ -26,7 +21,9 @@ export default function ArchiveDetailPage() {
 
   const handleDelete = async () => {
     if (savedMessageId) {
-      await deleteSavedMessage(Number(savedMessageId), { password: '' });
+      await deleteSavedMessage(Number(savedMessageId), {
+        password: 'dummypassword',
+      });
       navigate('/archives');
     }
   };
