@@ -6,6 +6,7 @@ interface InputProps {
   sender: string;
   receiver: string;
   centerIcon?: ReactNode;
+  reverseIcon?: boolean;
   maxLength?: number;
   onSenderChange: ChangeEventHandler<HTMLInputElement>;
   onReceiverChange: ChangeEventHandler<HTMLInputElement>;
@@ -15,14 +16,18 @@ export const Input = ({
   sender,
   receiver,
   centerIcon,
+  reverseIcon = false,
   maxLength,
   onSenderChange,
   onReceiverChange,
 }: InputProps) => {
+  const receiverIcon = reverseIcon ? userIconBlue : userIconOrange;
+  const senderIcon = reverseIcon ? userIconOrange : userIconBlue;
+
   return (
     <div className="border-background-gray flex flex-1 items-center justify-center border-b px-[50px] py-[13.5px]">
       <label className="flex items-center gap-[10px]">
-        <img src={userIconOrange} alt="" />
+        <img src={receiverIcon} alt="" />
         <input
           value={sender}
           onChange={onSenderChange}
@@ -33,7 +38,7 @@ export const Input = ({
       </label>
       <span className="px-[40px]">{centerIcon ?? '→'}</span>
       <label className="flex items-center gap-[10px]">
-        <img src={userIconBlue} alt="" />
+        <img src={senderIcon} alt="" />
         <input
           value={receiver}
           onChange={onReceiverChange}
