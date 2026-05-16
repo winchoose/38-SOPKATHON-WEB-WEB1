@@ -10,6 +10,9 @@ import { Button } from '../../shared/components/Button';
 import Header from '../home/components/Header';
 import { sendReply } from './apis/reply';
 
+const DEFAULT_SHARE_URL =
+  'https://38-sopkathon-web-web-1.vercel.app/letters/confirm';
+
 const shareUrl = async (url: string) => {
   if (navigator.share) {
     await navigator.share({
@@ -28,8 +31,8 @@ const ReplyPage = () => {
   const { messageId } = useParams();
   const [receiver, setReceiver] = useState('');
   const [sender, setSender] = useState('');
-  const [content, setContent] = useState('');
-  const [originalContent, setOriginalContent] = useState('');
+  const [content, setContent] = useState('SY');
+  const [originalContent, setOriginalContent] = useState('JH');
 
   const handleTranslateClick = () => {
     setOriginalContent(content);
@@ -58,13 +61,13 @@ const ReplyPage = () => {
     }
 
     try {
-      const response = await sendReply(numericMessageId, {
+      await sendReply(numericMessageId, {
         senderInitial: trimmedSender,
         receiverInitial: trimmedReceiver,
         content: trimmedContent,
       });
 
-      await shareUrl(response.viewUrl);
+      await shareUrl(DEFAULT_SHARE_URL);
     } catch (error) {
       console.error(error);
       alert('답장 전송에 실패했습니다.');
