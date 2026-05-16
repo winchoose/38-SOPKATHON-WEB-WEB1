@@ -69,14 +69,14 @@ const HomePage = () => {
 
   return (
     <section className="flex flex-col items-center gap-[14px]">
-      <Header showBack={false} />
-      <p className="text-[22px]">
+      <Header />
+      <p className="w-full text-left text-[22px]">
         모스부호로 소중한
         <br />
         마음을 전달해볼까요?
       </p>
 
-      <p className="text-sub-gray text-[12px]">
+      <p className="text-sub-gray w-full text-left text-[12px]">
         편지를 적어주시면 모스부호로 번역됩니다.
       </p>
 
