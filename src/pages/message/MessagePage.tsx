@@ -1,23 +1,23 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '../../shared/components/Button';
 import MessageOpenGraphic from '../../shared/assets/svg/messageopen_graphic.svg';
 import TranslateButton from '../../shared/assets/svg/translate_button.svg';
 import { convertHangulToMorse } from '../../shared/utils/morse';
 import Header from '../home/components/Header';
+import type { GetMessageResponse } from '../../shared/types/types';
+import { http } from '../../shared/apis/http';
+import { ENDPOINTS } from '../../shared/apis/endpoints';
 
-interface MessagePageProps {
-  to?: string;
-  from?: string;
-  content?: string;
-}
-
-export default function MessagePage({
-  to = '이나연',
-  from = '김민지',
-  content: initialContent = '그때 너무 미안했어!',
-}: MessagePageProps) {
+export default function MessagePage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  // const data = location.state as GetMessageResponse;
+  const data = location.state as GetMessageResponse & { messageId: number };
+  console.log(location.state);
+  const to = data?.receiverInitial ?? '이나연';
+  const from = data?.senderInitial ?? '김민지';
+  const initialContent = data?.content ?? '그때 너무 미안했어!';
 
   const morseContent = convertHangulToMorse(initialContent);
   const [isTranslated, setIsTranslated] = useState(false);
@@ -27,6 +27,19 @@ export default function MessagePage({
   const handleTranslateClick = () => {
     setIsTranslated(!isTranslated);
   };
+
+  const handleSave = async () => {
+    try {
+      const response = await http.post(ENDPOINTS.ARCHIVES.CREATE, {
+        messageId: data?.messageId,
+        password: '1234',
+      });
+      console.log('저장 성공:', response);
+    } catch (error) {
+      console.error('저장 실패:', error);
+    }
+  };
+
   return (
     <div className="flex h-screen flex-col">
       <Header showBack={false} />
@@ -58,6 +71,7 @@ export default function MessagePage({
         <Button
           label="저장하기"
           className="!bg-[#F6F6F6] !py-[2.5rem] !text-[#9A9F9F]"
+          onClick={handleSave}
         />
         <Button
           label="답장하기"
