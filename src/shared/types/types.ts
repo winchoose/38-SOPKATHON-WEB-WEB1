@@ -4,10 +4,7 @@ export interface CreateMessageRequest {
   content: string;
 }
 
-export interface CreateMessageResponse {
-  messageId: number;
-  viewUrl: string;
-}
+export type CreateMessageResponse = string;
 
 export interface GetMessageResponse {
   senderInitial: string;
